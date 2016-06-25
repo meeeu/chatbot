@@ -5,8 +5,9 @@ app = require('koa')()
 app.use( route.get('/webhook', webhook) )
 
 function *webhook() {
-  req = yield parse(this)
-  this.body = req.hub.challenge
+  req = this.request.query
+  console.log(req)
+  this.body = req['hub.challenge']
 }
 
 app.listen(process.env.PORT || 9000)
