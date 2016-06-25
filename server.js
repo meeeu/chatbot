@@ -6,7 +6,7 @@ app.use( route.post('/webhook', webhook) )
 
 function *webhook() {
   req = yield parse(this)
-  this.body = req.hub.challenge
+  this.body = yield req.hub.challenge
 }
 
 app.listen(process.env.PORT || 9000)
