@@ -3,7 +3,10 @@ app = require('koa')()
 , parse = require('co-body')
 
 app.use( route.get('/webhook', webhook) )
-
+app.use( route.get('/privacy', privacy) )
+function *privacy() {
+  this.body = 'You are private.  We will not share your info with anyone.'
+}
 function *webhook() {
   req = this.request.query
   console.log(req)
